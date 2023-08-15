@@ -1,12 +1,15 @@
 services:
   postgres:
     image: postgres:latest
+    restart: always
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: db_sreality
     ports:
       - "5432:5432"
+    volumes:
+      - ./database/structure.sql:/docker-entrypoint-initdb.d/structure.sql
   frontend:
     build:
       context: ./frontend
