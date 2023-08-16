@@ -31,10 +31,10 @@ const getFlatsOnPage = async (page: Page):Promise<ScrappedFlat[]> => {
 
 const createSQLInsert = (flats:ScrappedFlat[]):string => {
   if(flats.length === 0) return ""
-  let statement = "TRUNCATE flats;\nINSERT INTO flats (title, address, image_url) VALUES"
+  let statement = "TRUNCATE flats;\nINSERT INTO\n\tflats (title, address, image_url)\nVALUES"
 
   for(const flat of flats){
-    statement += `\n("${flat.title}", "${flat.address}", "${flat.image_url}"),`
+    statement += `\n\t('${flat.title}', '${flat.address}', '${flat.image_url}'),`
   }
   statement = statement.replace(/.$/,';');
 
