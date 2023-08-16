@@ -9,7 +9,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./database/structure.sql:/docker-entrypoint-initdb.d/structure.sql
+      - ./database/structure.sql:/docker-entrypoint-initdb.d/00_structure.sql
+      - ./database/flat_insert.sql:/docker-entrypoint-initdb.d/01_flat_insert.sql
   frontend:
     build:
       context: ./frontend
