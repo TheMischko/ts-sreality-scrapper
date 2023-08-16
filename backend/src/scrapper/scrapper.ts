@@ -54,8 +54,8 @@ export const scrapeSReality = async () => {
 
   let flats:ScrappedFlat[] = [];
 
-  let maxCounter = 100;
-  while(flats.length < 50 || maxCounter <= 0){
+  let maxCounter = 200;
+  while(flats.length < 500 || maxCounter <= 0){
     let flatsCurrent = await getFlatsOnPage(page);
     flats.push(...flatsCurrent);
     // Click until button dissappears
