@@ -2,6 +2,7 @@ import express, { Response } from 'express';
 import cors from 'cors';
 import database from './database';
 import scrapper from './scrapper';
+import flatModel from './models/flatModel';
 import fs from 'fs';
 
 const PORT = 5000;
@@ -17,7 +18,13 @@ const main = async () => {
   console.info(`PostgreSQL database connected.`);
  
   app.all('/scrape', handleScrapping);
-  app.get('/', (_, res) => res.send("connected"));
+  app.get('/flats', async(_, res) => {
+    const flats = await flatModel.getFlats();
+    res.send(JSON.stringify(flats));
+  });
+  app.get('/', async (_, res) => {
+    res.send("connected")
+  });
   app.listen(PORT, () => {
     console.info(`Express server stared at port ${PORT}`);
   });

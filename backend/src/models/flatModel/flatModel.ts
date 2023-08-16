@@ -4,7 +4,7 @@ import database from "../../database"
 const getFlats = async () => {
   const db = await database.getClient();
   try{
-    const result = await db.query("SELECT if, title, image_url");
+    const result = await db.query("SELECT id, title, address, image_url FROM flats");
     if(result.rowCount == 0) return [];
     return result.rows;
   } catch{
