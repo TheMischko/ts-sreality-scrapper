@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS flats (
   id SERIAL PRIMARY KEY,
-  title CHAR(255) NOT NULL,
-  address CHAR(255) NOT NULL,
-  image_url CHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  image_url VARCHAR(255) NOT NULL
 );
