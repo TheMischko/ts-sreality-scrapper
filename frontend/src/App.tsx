@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import FlatsWrapper from './flats/FlatsWrapper';
+import FlatsWrapper from './components/flats/FlatsWrapper';
 
 function App() {
   return (
