@@ -1,10 +1,13 @@
 import React from 'react'
-import { Spinner } from '@chakra-ui/react';
+import { Center, Spinner, Text, Stack } from '@chakra-ui/react';
 
 export default function LoadingSpinner() {
   return (
-    <div>
-      <Spinner />
-    </div>
+    <Center h='100vh'>
+      <Stack align='center'>
+        <Spinner />
+        <Text>Flats are loading...</Text>
+      </Stack>
+    </Center>
   )
 }
