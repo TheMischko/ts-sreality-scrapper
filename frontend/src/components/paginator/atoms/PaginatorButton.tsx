@@ -14,9 +14,9 @@ export default function PaginatorButton({active, children, onClickHandler, value
             w={{base:"40px", md:"50px"}} 
             h={{base:"40px", md:"50px"}} 
             colorScheme={active ? 'teal' : 'gray'}
-            css={{
+            css={{md: {
               '&:hover': {color: 'teal'}
-            }}
+            }}}
             onClick={(event) => onClickHandler(event, value)}>
               {children}
     </Button>
