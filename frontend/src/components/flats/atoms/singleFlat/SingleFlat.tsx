@@ -1,6 +1,13 @@
 import { Card, CardBody, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 
+/**
+ * Component that represents single flat.
+ * Data are are displayed in a column while on a big screen and in a row while on smaller screen.
+ * 
+ * @param flat 
+ * @returns 
+ */
 export default function SingleFlat(flat:Flat) {
   return (
     <Card h="100%" 

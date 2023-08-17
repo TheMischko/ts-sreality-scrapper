@@ -7,8 +7,17 @@ import FlatsGrid from './FlatsGrid';
 import Paginator from '../paginator/Paginator';
 import { Heading, Link, Stack, Text } from '@chakra-ui/react';
 
+/**
+ * Sets how many flats there will be shown on a single page;
+ */
 const FLATS_ON_PAGE = 45;
 
+
+/**
+ * Component that represents content of a page that will show offer of flats.
+ * 
+ * @returns 
+ */
 export default function FlatsWrapper() {
   const [flats, setFlats] = useState<Flat[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,6 +27,10 @@ export default function FlatsWrapper() {
     fetchData();
   }, []);
 
+
+  /**
+   * Gets data about flats from the server.
+   */
   const fetchData = async() => {
     try{
       const fetchedFlats = await flatsModel.getFlats();

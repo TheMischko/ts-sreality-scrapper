@@ -6,6 +6,12 @@ type FlatsGridProps = {
   flats: Flat[]
 }
 
+/**
+ * Component that will display flats from props to a grid.
+ * 
+ * @param props 
+ * @returns 
+ */
 export default function FlatsGrid(props:FlatsGridProps) {
 
   return (
