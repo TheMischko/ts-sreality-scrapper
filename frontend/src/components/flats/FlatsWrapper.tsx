@@ -5,7 +5,7 @@ import LoadingSpinner from './atoms/spinner/LoadingSpinner';
 import flatsModel from '../../model/flatsModel';
 import FlatsGrid from './FlatsGrid';
 import Paginator from '../paginator/Paginator';
-import { Stack } from '@chakra-ui/react';
+import { Heading, Link, Stack, Text } from '@chakra-ui/react';
 
 const FLATS_ON_PAGE = 45;
 
@@ -43,10 +43,18 @@ export default function FlatsWrapper() {
         )
         // Loaded
         :(
+          <>
+          <Heading size={{base: "2xl", md: "3xl", lg: "4xl"}} textAlign="center" mt={{base: 0, md: 10}} mb={2}>
+            Available flats:
+          </Heading>
+          <Text textAlign="center" color='blackAlpha.700' mb={5}>
+            Scrapped from webportal <Link href="https://www.sreality.cz/en/search/for-sale/apartments">sreality.cz</Link>
+          </Text>
           <Stack>
             <FlatsGrid flats={flatsToShow}/>
             <Paginator maxPages={pages} pageHookValue={activePage} pageHookSetter={setActivePage}/>
           </Stack>
+          </>
         )
        }
     </div>
