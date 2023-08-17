@@ -1,5 +1,7 @@
 import { getFlats } from "./flatsModel";
 
-export default {
+const flatsModel = {
   getFlats
 }
+
+export default flatsModel
