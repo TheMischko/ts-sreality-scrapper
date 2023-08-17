@@ -1,5 +1,5 @@
 services:
-  postgres:
+  database:
     image: postgres:latest
     restart: always
     environment:
@@ -15,11 +15,14 @@ services:
     build:
       context: ./frontend
     ports:
-      - "4000:3000"
+      - "8080:3000"
+    depends_on:
+      - database
   backend:
     build:
       context: ./backend
     depends_on:
-      - postgres
+      database:
+        condition: service_started
     ports:
       - "5000:5000"
