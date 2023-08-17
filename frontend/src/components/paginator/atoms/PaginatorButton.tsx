@@ -8,6 +8,13 @@ export interface PaginatorButtonProps {
   onClickHandler(e:React.MouseEvent, value?: number):void
 }
 
+/**
+ * Generic button of the Paginator component.
+ * `value` should correspond to the page this button may represent in the paginator.
+ * 
+ * @param props 
+ * @returns 
+ */
 export default function PaginatorButton({active, children, onClickHandler, value}:PaginatorButtonProps) {
   return (
     <Button borderRadius="100%" 

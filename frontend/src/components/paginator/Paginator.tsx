@@ -9,17 +9,36 @@ export interface PaginatorProps{
   pageHookSetter:Function,
 }
 
+
+/**
+ * Checks if current window's width is smaller then 768px.
+ * @returns 
+ */
 const getIsSmallSize = ():boolean => {
   return window.innerWidth < 768;
 }
 
+
+/**
+ * Scrolls to the of the current page.
+ */
 const scrollUp = () => {
   window.scrollTo({top: 0, behavior: "smooth"})
 }
 
+/**
+ * Components that allows to select various pages and update value of external hook.
+ * 
+ * @param props 
+ * @returns 
+ */
 export default function Paginator({maxPages, pageHookValue, pageHookSetter}:PaginatorProps) {
   const [isSmallSize, setIsSmallSize] = useState<boolean>(false);
 
+  /**
+   * Switches `isSmallSize` state to true if there are too many pages or the window is too small.
+   * @returns void
+   */
   const changeIsSmallSize = () => {
     if(maxPages > 12){
       setIsSmallSize(true);
@@ -28,11 +47,10 @@ export default function Paginator({maxPages, pageHookValue, pageHookSetter}:Pagi
     setIsSmallSize(getIsSmallSize());
   }
 
+  // Add event handler for resizing of the browser window so the paginator can change its number of button accordingly.
   useEffect(() => {
     changeIsSmallSize();
-
     window.addEventListener('resize', changeIsSmallSize)
-
     return () => {
       window.removeEventListener('resize', changeIsSmallSize)
     }
@@ -53,6 +71,11 @@ export default function Paginator({maxPages, pageHookValue, pageHookSetter}:Pagi
   }
 
 
+  /**
+   * Handler for click event on button that will change value of current page to a one smaller.
+   * 
+   * @param e event details
+   */
   const onPrevClicked = (_:any) => {
     if(pageHookValue > 0){
       pageHookSetter(pageHookValue-1);
@@ -61,6 +84,12 @@ export default function Paginator({maxPages, pageHookValue, pageHookSetter}:Pagi
   }
 
 
+  /**
+   * Handler for click event of numbered button that will change active page to its value.
+   * 
+   * @param e event details 
+   * @param value value of the button (preferably the page this button belongs to)
+   */
   const onPageClicked = (_:any, value?:number) => {
     if(value !== undefined && value >= 0 && value < maxPages){
       pageHookSetter(value);
@@ -69,6 +98,11 @@ export default function Paginator({maxPages, pageHookValue, pageHookSetter}:Pagi
   }
 
 
+  /**
+   * Handler for click event on button that will change value of current page to a one bigger.
+   * 
+   * @param e event details
+   */
   const onNextClicked = (_:any) => {
     if(pageHookValue < maxPages){
       pageHookSetter(pageHookValue+1);
