@@ -18,10 +18,12 @@ const main = async () => {
   console.info(`PostgreSQL database connected.`);
  
   app.all('/scrape', handleScrapping);
+
   app.get('/flats', async(_, res) => {
     const flats = await flatModel.getFlats();
     res.send(JSON.stringify(flats));
   });
+  
   app.get('/', async (_, res) => {
     res.send("connected")
   });

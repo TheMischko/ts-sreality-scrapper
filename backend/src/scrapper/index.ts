@@ -1,5 +1,5 @@
-import { scrapeSReality } from "./scrapper";
+import { ScrapeAndCreateSQL } from "./scrapper";
 
 export default {
-  scrapeSReality
+  scrapeSReality: ScrapeAndCreateSQL
 }

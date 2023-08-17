@@ -1,7 +1,11 @@
 import database from "../../database"
 
-
-const getFlats = async () => {
+/**
+ * Selects all flats from database table `flats` and return them.
+ * 
+ * @returns array of data about flats
+ */
+const getFlats = async ():Promise<any[]> => {
   const db = await database.getClient();
   try{
     const result = await db.query("SELECT id, title, address, image_url FROM flats");
@@ -10,11 +14,6 @@ const getFlats = async () => {
   } catch{
     return [];
   }
-}
-
-const insertFlats = async(title:string, image_url:string) => {
-  const db = await database.getClient();
-  await db.query(`INSERT INTO flats (title, image_url) VALUES (${title}, ${image_url})`);
 }
 
 export default {
