@@ -7,6 +7,8 @@ import FlatsGrid from './FlatsGrid';
 import Paginator from '../paginator/Paginator';
 import { Stack } from '@chakra-ui/react';
 
+const FLATS_ON_PAGE = 45;
+
 export default function FlatsWrapper() {
   const [flats, setFlats] = useState<Flat[]>([]);
   const [loading, setLoading] = useState(true);
@@ -26,6 +28,10 @@ export default function FlatsWrapper() {
       setLoading(false);
     }
   }
+  const pages = Math.ceil(flats.length / FLATS_ON_PAGE);
+  const flatsStartIndex = FLATS_ON_PAGE * activePage;
+  const flatsEndIndex = flatsStartIndex + FLATS_ON_PAGE;
+  const flatsToShow = loading ? [] : flats.slice(flatsStartIndex, flatsEndIndex);
 
 
   return (
@@ -38,8 +44,8 @@ export default function FlatsWrapper() {
         // Loaded
         :(
           <Stack>
-            <FlatsGrid flats={flats}/>
-            <Paginator maxPages={true ? 10 :Math.ceil(flats.length/9)} pageHookValue={activePage} pageHookSetter={setActivePage}/>
+            <FlatsGrid flats={flatsToShow}/>
+            <Paginator maxPages={pages} pageHookValue={activePage} pageHookSetter={setActivePage}/>
           </Stack>
         )
        }

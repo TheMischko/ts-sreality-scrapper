@@ -10,12 +10,11 @@ export default function FlatsGrid(props:FlatsGridProps) {
 
   return (
     <Grid templateColumns={{base: '100%', md: 'repeat(3, 1fr)'}} 
-          templateRows={{base: `repeat(${props.flats.length}, 1fr)`, md: `repeat(${props.flats.length % 3}, 1fr)`}}
-          gap={3}
+          gap={{base: 3, lg: 10}}
           p={3}>
       {props.flats.map((flat:Flat) => {
         return (
-        <GridItem>
+        <GridItem h='100%' key={flat.image_url}>
           <SingleFlat {...flat}/>
         </GridItem>
         )
