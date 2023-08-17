@@ -13,6 +13,10 @@ const getIsSmallSize = ():boolean => {
   return window.innerWidth < 768;
 }
 
+const scrollUp = () => {
+  window.scrollTo({top: 0, behavior: "smooth"})
+}
+
 export default function Paginator({maxPages, pageHookValue, pageHookSetter}:PaginatorProps) {
   const [isSmallSize, setIsSmallSize] = useState<boolean>(false);
 
@@ -52,14 +56,15 @@ export default function Paginator({maxPages, pageHookValue, pageHookSetter}:Pagi
   const onPrevClicked = (_:any) => {
     if(pageHookValue > 0){
       pageHookSetter(pageHookValue-1);
+      scrollUp();
     }
   }
 
 
   const onPageClicked = (_:any, value?:number) => {
-    console.log("clicked value: ", value)
     if(value !== undefined && value >= 0 && value < maxPages){
       pageHookSetter(value);
+      scrollUp();
     }
   }
 
@@ -67,6 +72,7 @@ export default function Paginator({maxPages, pageHookValue, pageHookSetter}:Pagi
   const onNextClicked = (_:any) => {
     if(pageHookValue < maxPages){
       pageHookSetter(pageHookValue+1);
+      scrollUp();
     }
   }
 
@@ -77,7 +83,9 @@ export default function Paginator({maxPages, pageHookValue, pageHookSetter}:Pagi
             justifyContent='center'
             spacing={2}
             w='100%'
-            h='50px'>
+            h='50px'
+            mt={10}
+            mb={5}>
       {pageHookValue > 0
         ? <PaginatorButton key="prev" onClickHandler={onPrevClicked} active={false}><ArrowBackIcon /></PaginatorButton>
         : null
