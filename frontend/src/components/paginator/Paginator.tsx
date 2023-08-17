@@ -57,7 +57,8 @@ export default function Paginator({maxPages, pageHookValue, pageHookSetter}:Pagi
 
 
   const onPageClicked = (_:any, value?:number) => {
-    if(value && value > 0 && value < maxPages){
+    console.log("clicked value: ", value)
+    if(value !== undefined && value >= 0 && value < maxPages){
       pageHookSetter(value);
     }
   }
