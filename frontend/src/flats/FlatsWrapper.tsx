@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import LoadingSpinner from './atoms/spinner/LoadingSpinner';
 
 import flatsModel from '../model/flatsModel';
+import FlatsGrid from './FlatsGrid';
 
 export default function FlatsWrapper() {
   const [flats, setFlats] = useState<Flat[]>([]);
@@ -33,15 +34,7 @@ export default function FlatsWrapper() {
         )
         // Loaded
         :(
-          flats.map((flat) => {
-            return (
-              <div>
-                <h3>{flat.title}</h3>
-                <p>{flat.address}</p>
-                <img src={flat.image_url} />
-              </div>
-            )
-          })
+          <FlatsGrid flats={flats}/>
         )
        }
     </div>
