@@ -9,7 +9,8 @@ import { Stack } from '@chakra-ui/react';
 
 export default function FlatsWrapper() {
   const [flats, setFlats] = useState<Flat[]>([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [activePage, setActivePage] = useState(0);
 
   useEffect(() => {
     fetchData();
@@ -38,7 +39,7 @@ export default function FlatsWrapper() {
         :(
           <Stack>
             <FlatsGrid flats={flats}/>
-            <Paginator />
+            <Paginator maxPages={true ? 10 :Math.ceil(flats.length/9)} pageHookValue={activePage} pageHookSetter={setActivePage}/>
           </Stack>
         )
        }
