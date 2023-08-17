@@ -3,7 +3,13 @@ import React from 'react'
 
 export default function SingleFlat(flat:Flat) {
   return (
-    <Card>
+    <Card h="100%" 
+          m={{base: 0, lg: 4}} 
+          css={{
+            '&:hover': {
+              background: 'rgba(0,0,0,0.1)'
+            }
+          }}>
       <CardBody>
         <Stack  align='center'
                 direction={{base: 'row', md: 'column'}}>
