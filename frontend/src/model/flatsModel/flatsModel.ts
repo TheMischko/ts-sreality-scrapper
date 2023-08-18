@@ -1,4 +1,4 @@
-const endpointUrl = "http://backend:5000/flats";
+const endpointUrl = "http://localhost:5000/flats";
 
 /**
  * Fetches flats from backend and parses them as objects.
