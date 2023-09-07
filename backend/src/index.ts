@@ -2,8 +2,8 @@ import express, { Response } from 'express';
 import cors from 'cors';
 import database from './database';
 import scrapper from './scrapper';
-import flatModel from './models/flatModel';
 import fs from 'fs';
+import routers from './routers';
 
 const PORT = 5000;
 
@@ -19,10 +19,7 @@ const main = async () => {
  
   app.all('/scrape', handleScrapping);
 
-  app.get('/flats', async(_, res) => {
-    const flats = await flatModel.getFlats();
-    res.send(JSON.stringify(flats));
-  });
+  app.use('/flats', routers.flatsRouter);
   
   app.get('/', async (_, res) => {
     res.send("connected")
