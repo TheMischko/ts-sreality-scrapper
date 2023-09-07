@@ -45,3 +45,20 @@ export const mockFlatProvider = () :IFlatProvider => {
     getPart
   }
 }
+
+export const emptyMockFlatProvider = () :IFlatProvider => {
+  const get = ():Promise<Flat[]> => {
+    return new Promise<Flat[]>((resolve) => {
+      resolve([]);
+    })
+  };
+  const getPart = (pageIndex:number, pageSize:number):Promise<Flat[]> => {
+    return new Promise<Flat[]>((resolve) => {
+      resolve([]);
+    })
+  };
+  return {
+    get,
+    getPart
+  }
+}

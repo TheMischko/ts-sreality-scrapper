@@ -1,6 +1,6 @@
 import services from "../../src/services";
 import { FlatService } from "../../src/services/flatService";
-import { mockFlatProvider } from "../mocks/providers/MockFlatProvider";
+import {emptyMockFlatProvider, mockFlatProvider} from "../mocks/providers/MockFlatProvider";
 
 test("flatService - getFlats - resolves list of flats", async () => {
   const mockFlats = mockFlatProvider();
@@ -50,7 +50,7 @@ test("flatService - getFlats - paging result has the right size", async() => {
   const flats = await flatsService.getFlats({page: 0, itemsPerPage: pageSize});
 
   expect(flats.length).toBe(pageSize);
-})
+});
 
 test("flatService - getFlats - paging result is empty list on out of bounds page index", async() => {
   const mockFlats = mockFlatProvider();
@@ -60,4 +60,20 @@ test("flatService - getFlats - paging result is empty list on out of bounds page
   const flats = await flatsService.getFlats({page: Number.MAX_SAFE_INTEGER, itemsPerPage: pageSize});
 
   expect(flats).toStrictEqual([]);
-})
+});
+
+test("flatService - getFlats - returns empty list on no available flats", async() => {
+  const mockFlats = emptyMockFlatProvider();
+  const flatsService: FlatService = services.flatService(mockFlats);
+
+  const flats = await flatsService.getFlats();
+  expect(flats).toStrictEqual([]);
+});
+
+test("flatService - getFlats - returns empty list on no available flats with paging", async() => {
+  const mockFlats = emptyMockFlatProvider();
+  const flatsService: FlatService = services.flatService(mockFlats);
+
+  const flats = await flatsService.getFlats({page: 0, itemsPerPage: 0});
+  expect(flats).toStrictEqual([]);
+});
