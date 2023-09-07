@@ -4,23 +4,29 @@ import database from './database';
 import scrapper from './scrapper';
 import fs from 'fs';
 import routers from './routers';
+import {config} from "dotenv-flow";
+
+
 
 const PORT = 5000;
 
 const main = async () => {
-  const app = express();
+  console.info(process.env.NODE_ENV);
 
+
+  const app = express();
+  config();
   app.disable('x-powered-by');
   app.use(cors());
 
   await database.connect();
-  
+
   console.info(`PostgreSQL database connected.`);
- 
+
   app.all('/scrape', handleScrapping);
 
   app.use('/flats', routers.flatsRouter);
-  
+
   app.get('/', async (_, res) => {
     res.send("connected")
   });
