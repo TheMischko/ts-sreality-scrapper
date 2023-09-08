@@ -1,4 +1,4 @@
 interface IFlatProvider{
-  get():Promise<Flat[]>;
-  getPart(pageIndex:number, pageSize:number):Promise<Flat[]>;
+  get(filters?: FlatFilter):Promise<Flat[]>;
+  getPart(pageIndex:number, pageSize:number, filters?: FlatFilter):Promise<Flat[]>;
 }

@@ -4,3 +4,8 @@ interface Flat{
   address: string;
   image_url: string;
 }
+
+interface FlatFilter{
+  titleFilters?: string[],
+  addressFilters?: string[]
+}
